@@ -1,105 +1,12 @@
 /* eslint "react/prefer-stateless-function": 0 */
 /* eslint no-useless-constructor: 0 */
 
-import React, { Component, PropTypes } from 'react';
-import { View, Text, StatusBar } from 'react-native';
 import { connect } from 'react-redux';
-import { push } from 'react-router-redux';
-import Swiper from 'react-native-swiper';
-import swiper from '../styles/swiper';
 import { SUBMISSION_TYPES } from '../constants';
+import { push } from '../actions/navigation';
 import { selectSubmissionType } from '../actions/submission';
-import SubmissionType from '../components/submission-type';
-
-const activeDot = (
-  <View
-    style={[swiper.dot, swiper.active]}
-  />
-);
-
-const dot = (
-  <View
-    style={swiper.dot}
-  />
-);
-
-const nextButton = (
-  <Text style={swiper.button}>›</Text>
-);
-
-const prevButton = (
-  <Text style={swiper.button}>‹</Text>
-);
-
-class SelectTypePage extends Component {
-  constructor(props) {
-    super(props);
-    this.onSelect = this.onSelect.bind(this);
-    this.onSelectComment = this.onSelectComment.bind(this);
-    this.onSelectRequest = this.onSelectRequest.bind(this);
-    this.onSelectQuestion = this.onSelectQuestion.bind(this);
-  }
-
-  onSelect(type) {
-    this.props.selectSubmissionType(type);
-    this.props.nextScreen();
-  }
-
-  onSelectComment() {
-    this.onSelect('comment');
-  }
-
-  onSelectRequest() {
-    this.onSelect('request');
-  }
-
-  onSelectQuestion() {
-    this.onSelect('question');
-  }
-
-  render() {
-    /* eslint max-len: 0 */
-    return (
-      <View>
-        <StatusBar translucent barStyle="light-content" />
-        <Swiper
-          index={this.props.index}
-          // showsButtons // TODO: update redux
-          loop={false}
-          dot={dot}
-          activeDot={activeDot}
-          prevButton={prevButton}
-          nextButton={nextButton}
-        >
-          <SubmissionType
-            heading="Positive Comment"
-            description="Praise agencies for the things they are doing right, so they can continue to do so!"
-            type="comment"
-            onSelect={this.onSelectComment}
-          />
-          <SubmissionType
-            heading="Service Request"
-            description="Have a problem? Is something broken? Let your city or local agency know!"
-            type="request"
-            onSelect={this.onSelectRequest}
-          />
-          <SubmissionType
-            heading="Question"
-            description="New to a city? Have feedback for your local tranportation agency? This is the place to go."
-            type="question"
-            onSelect={this.onSelectQuestion}
-          />
-        </Swiper>
-      </View>
-    );
-  }
-}
-
-SelectTypePage.propTypes = {
-  index: PropTypes.number,
-  selectSubmissionType: PropTypes.func,
-  nextScreen: PropTypes.func,
-};
+import { selectAgency } from '../routes';
+import SelectTypePage from '../components/select-type-page';
 
 const mapStateToProps = (state) => ({
   index: SUBMISSION_TYPES.indexOf(state.submission.type) || 0,
@@ -107,8 +14,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   selectSubmissionType: (type) => (dispatch(selectSubmissionType(type))),
-  nextScreen: () => (dispatch(push('/select-agency'))),
+  nextScreen: () => (dispatch(push(selectAgency))),
 });
-
 
 export default connect(mapStateToProps, mapDispatchToProps)(SelectTypePage);

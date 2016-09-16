@@ -1,8 +1,8 @@
 import { combineReducers } from 'redux';
-import { routerReducer } from 'react-router-redux';
 import submission from './submission';
+import navigation from './navigation';
 
 export default combineReducers({
   submission,
-  routing: routerReducer,
+  navigation,
 });

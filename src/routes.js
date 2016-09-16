@@ -1,14 +1,24 @@
-import App from './containers/app';
+// import App from './components/app';
 import HomePage from './containers/home-page';
 import SelectTypePage from './containers/select-type-page';
 import SelectAgencyPage from './containers/select-agency-page';
 
-export default {
-  path: '/',
-  component: App,
-  indexRoute: { component: HomePage },
-  childRoutes: [
-    { path: 'select-type', component: SelectTypePage },
-    { path: 'select-agency', component: SelectAgencyPage },
-  ],
-};
+function Route(options) {
+  this.key = options.key;
+  this.component = options.component;
+}
+
+export const home = new Route({
+  key: 'home',
+  component: HomePage,
+});
+
+export const selectType = new Route({
+  key: 'select-type',
+  component: SelectTypePage,
+});
+
+export const selectAgency = new Route({
+  key: 'select-agency',
+  component: SelectAgencyPage,
+});

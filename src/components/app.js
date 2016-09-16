@@ -12,7 +12,6 @@ const styles = StyleSheet.create({
   },
 });
 
-
 export default function App(props) {
   return (
     <View style={[styles.fullscreen, styles.status]}>
