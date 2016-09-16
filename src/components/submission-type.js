@@ -8,7 +8,7 @@ export default function SubmissionType(props) {
     <View style={[styles.base, styles[props.type]]}>
       <Text style={styles.title}>{props.heading}</Text>
       <Text style={styles.subtitle}>{props.description}</Text>
-      <TouchableHighlight style={styles.actions}>
+      <TouchableHighlight onPress={props.onSelect} style={styles.actions}>
         <Text style={[buttons.base, styles[`${props.type}Text`]]}>
           Select {props.type}
         </Text>
@@ -21,4 +21,5 @@ SubmissionType.propTypes = {
   heading: PropTypes.string,
   description: PropTypes.string,
   type: PropTypes.string,
+  onSelect: PropTypes.func,
 };
