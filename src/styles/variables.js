@@ -1,5 +1,14 @@
-export const TEXT_COLOR = '#fff';
+export const WHITE = '#fff';
+export const TEXT_COLOR = WHITE;
 export const BRAND_PRIMARY = '#56C1B3';
+
+export const COMMENT = '#37B04C';
+export const REQUEST = '#CD7901';
+export const QUESTION = '#439FC9';
+
+export const COMMENT_TEXT = '#37B04C';
+export const REQUEST_TEXT = '#CD7901';
+export const QUESTION_TEXT = '#439FC9';
 
 export const FONT_SIZE_H1 = 48;
 export const FONT_SIZE_H2 = 36;
@@ -23,3 +32,5 @@ export const LG = 20;
 export const MD = 15;
 export const SM = 10;
 export const XS = 5;
+
+export const BORDER_RADIUS = 5;

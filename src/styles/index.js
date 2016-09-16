@@ -1,5 +1,4 @@
 import { StyleSheet } from 'react-native';
-
 import * as $ from './variables';
 
 export const colors = StyleSheet.create({
@@ -14,6 +13,15 @@ export const headings = StyleSheet.create({
   h4: { fontSize: $.FONT_SIZE_H4 },
   h5: { fontSize: $.FONT_SIZE_H5 },
   h6: { fontSize: $.FONT_SIZE_H6 },
+});
+
+export const buttons = StyleSheet.create({
+  base: {
+    backgroundColor: $.WHITE,
+    padding: $.SM,
+    borderRadius: $.BORDER_RADIUS,
+    textAlign: 'center',
+  },
 });
 
 exports.welcome = require('./welcome').default;

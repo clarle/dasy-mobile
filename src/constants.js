@@ -1,1 +1,5 @@
-export const BRAND_PRIMARY = '#56C1B3';
+export const SUBMISSION_TYPES = [
+  'comment',
+  'request',
+  'question',
+];
