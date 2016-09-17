@@ -1,8 +1,10 @@
 import { combineReducers } from 'redux';
-import submission from './submission';
 import navigation from './navigation';
+import submission from './submission';
+import agencies from './agencies';
 
 export default combineReducers({
-  submission,
   navigation,
+  submission,
+  agencies,
 });

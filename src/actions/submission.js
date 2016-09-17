@@ -1,5 +1,6 @@
 import {
   SELECT_SUBMISSION,
+  SELECT_AGENCY,
 } from '../action-types';
 
 export function selectSubmissionType(type) {
@@ -7,6 +8,15 @@ export function selectSubmissionType(type) {
     type: SELECT_SUBMISSION,
     payload: {
       type,
+    },
+  };
+}
+
+export function selectAgency(id) {
+  return {
+    type: SELECT_AGENCY,
+    payload: {
+      id,
     },
   };
 }

@@ -3,3 +3,5 @@ export const SUBMISSION_TYPES = [
   'request',
   'question',
 ];
+
+export const HOST = 'http://localhost:3000';

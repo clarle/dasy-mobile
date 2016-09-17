@@ -2,7 +2,7 @@
 /* eslint no-useless-constructor: 0 */
 
 import React, { Component, PropTypes } from 'react';
-import { View, Text, StatusBar } from 'react-native';
+import { View, Text, ListView, StatusBar } from 'react-native';
 import NavigationBar from 'react-native-navbar';
 import * as $ from '../styles/variables';
 import styles from '../styles/navbar';
@@ -11,6 +11,16 @@ export default class SelectAgencyPage extends Component {
   constructor(props) {
     /* eslint no-useless-constructor: 0 */
     super(props);
+  }
+
+  componentDidMount() {
+    this.props.requestAgencies();
+  }
+
+  selectAgency(agency) {
+    return function boundSelectAgency() {
+      return this.props.selectAgency(agency);
+    };
   }
 
   render() {
@@ -32,7 +42,11 @@ export default class SelectAgencyPage extends Component {
             handler: this.props.prevRoute,
           }}
         />
-        <Text onPress={this.props.nextRoute}>Select Agency</Text>
+        {this.props.agencies.map(agency => (
+          <Text key={agency.id} onPress={this.props.selectAgency.bind(this, agency)}>
+            {agency.name}
+          </Text>
+        ))}
       </View>
     );
   }
@@ -41,4 +55,11 @@ export default class SelectAgencyPage extends Component {
 SelectAgencyPage.propTypes = {
   nextRoute: PropTypes.func,
   prevRoute: PropTypes.func,
+  requestAgencies: PropTypes.func,
+  selectAgency: PropTypes.func,
+  agencies: PropTypes.arrayOf(PropTypes.shape({
+    id: PropTypes.string,
+  })),
+  loading: PropTypes.bool,
+  more: PropTypes.bool,
 };
