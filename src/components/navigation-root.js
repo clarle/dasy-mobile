@@ -2,11 +2,13 @@ import React, { Component, PropTypes } from 'react';
 import {
   BackAndroid,
   NavigationExperimental,
-  Text,
 } from 'react-native';
 import App from './app';
 
-const { CardStack: NavigationCardStack } = NavigationExperimental;
+const {
+  CardStack: NavigationCardStack,
+} = NavigationExperimental;
+
 
 export default class NavigationRoot extends Component {
   constructor(props) {
@@ -47,6 +49,7 @@ export default class NavigationRoot extends Component {
   }
 
   renderScene({ scene }) {
+    /* eslint class-methods-use-this: 0 */
     const { route } = scene;
     return (
       <App>
@@ -61,7 +64,6 @@ export default class NavigationRoot extends Component {
         direction="horizontal"
         navigationState={this.props.navigation}
         onNavigateBack={this.handleBackAction}
-        onNavigateNext={this.handleNextAction}
         onNavigate={this.handleNavigate}
         renderScene={this.renderScene}
       />

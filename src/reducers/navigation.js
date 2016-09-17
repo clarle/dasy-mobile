@@ -6,10 +6,17 @@ import {
 } from '../action-types';
 import { home } from '../routes';
 
+function randomizeKey(route) {
+  return {
+    ...route,
+    key: route.key + new Date(),
+  };
+}
+
 const initialState = {
   index: 0,
   routes: [
-    home,
+    randomizeKey(home),
   ],
 };
 
@@ -21,8 +28,8 @@ export default (state = initialState, action) => {
       return {
         ...state,
         routes: [
-          ...routes,
-          action.payload.route,
+          ...routes.slice(0, index + 1),
+          randomizeKey(action.payload.route),
         ],
         index: index + 1,
       };

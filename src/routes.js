@@ -2,10 +2,12 @@
 import HomePage from './containers/home-page';
 import SelectTypePage from './containers/select-type-page';
 import SelectAgencyPage from './containers/select-agency-page';
+import SendMessagePage from './containers/send-message-page';
 
-function Route(options) {
+export function Route(options) {
   this.key = options.key;
   this.component = options.component;
+  this.title = options.title;
 }
 
 export const home = new Route({
@@ -21,4 +23,11 @@ export const selectType = new Route({
 export const selectAgency = new Route({
   key: 'select-agency',
   component: SelectAgencyPage,
+  title: 'Select Agency',
+});
+
+export const sendMessage = new Route({
+  key: 'send-message',
+  component: SendMessagePage,
+  title: 'Message',
 });

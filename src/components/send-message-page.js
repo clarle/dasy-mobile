@@ -7,7 +7,7 @@ import NavigationBar from 'react-native-navbar';
 import * as $ from '../styles/variables';
 import styles from '../styles/navbar';
 
-export default class SelectAgencyPage extends Component {
+export default class SendMessagePage extends Component {
   constructor(props) {
     /* eslint no-useless-constructor: 0 */
     super(props);
@@ -23,7 +23,7 @@ export default class SelectAgencyPage extends Component {
             tintColor: $.BRAND_PRIMARY,
           }}
           title={{
-            title: 'Select Agency',
+            title: 'Message',
             tintColor: $.WHITE,
           }}
           leftButton={{
@@ -32,13 +32,12 @@ export default class SelectAgencyPage extends Component {
             handler: this.props.prevRoute,
           }}
         />
-        <Text onPress={this.props.nextRoute}>Select Agency</Text>
+        <Text>Enter Message</Text>
       </View>
     );
   }
 }
 
-SelectAgencyPage.propTypes = {
-  nextRoute: PropTypes.func,
+SendMessagePage.propTypes = {
   prevRoute: PropTypes.func,
 };

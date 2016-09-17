@@ -3,6 +3,8 @@ import * as $ from './variables';
 
 export default StyleSheet.create({
   container: {
+    backgroundColor: $.BRAND_PRIMARY,
+    flex: 1,
     paddingTop: 100,
   },
   title: {
