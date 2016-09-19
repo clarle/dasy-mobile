@@ -5,6 +5,13 @@ import {
   NEXT_ROUTE,
 } from '../action-types';
 
+/**
+ * Add new route.
+ * @param  {Object} route
+ * @param  {String} route.key
+ * @param  {Object} route.component
+ * @param  {String} route.title
+ */
 export function push(route) {
   return {
     type: PUSH_ROUTE,

@@ -4,8 +4,8 @@ import {
   RECEIVE_AGENCIES,
   RESET_AGENCIES,
 } from '../action-types';
-
 import { HOST } from '../constants';
+import { addAlert } from './alerts';
 
 export function requestAgencies() {
   return {
@@ -40,7 +40,10 @@ export function fetchAgencies(req = {}) {
       })
       .catch(err => {
         console.error(err);
-        throw err;
+        dispatch(addAlert({
+          message: err.message,
+          type: 'error',
+        }));
       });
   };
 }

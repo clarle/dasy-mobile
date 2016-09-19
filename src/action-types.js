@@ -17,3 +17,7 @@ export const RESET_AGENCIES = 'RESET_AGENCIES';
 export const CREATE_USER = 'CREATE_USER';
 export const UPDATE_USER = 'UPDATE_USER';
 export const RESET_USER = 'RESET_USER';
+
+export const ADD_ALERT = 'ADD_ALERT';
+export const DISMISS_ALERT = 'DISMISS_ALERT';
+export const DISMISS_ALL_ALERTS = 'DISMISS_ALL_ALERTS';

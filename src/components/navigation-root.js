@@ -3,7 +3,7 @@ import {
   BackAndroid,
   NavigationExperimental,
 } from 'react-native';
-import App from './app';
+import App from '../containers/app';
 
 const {
   CardStack: NavigationCardStack,
@@ -72,6 +72,7 @@ export default class NavigationRoot extends Component {
 }
 
 NavigationRoot.propTypes = {
+  alerts: PropTypes.array,
   navigation: PropTypes.shape({
     index: PropTypes.number,
   }),

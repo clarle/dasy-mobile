@@ -6,8 +6,8 @@ import {
   RECEIVE_SUBMIT_SUBMISSION,
   RESET_SUBMISSION,
 } from '../action-types';
-
 import { HOST } from '../constants';
+import { addAlert } from './alerts';
 
 export function selectSubmissionType(type) {
   return {
@@ -74,7 +74,10 @@ export function submitSubmission() {
       })
       .catch(err => {
         console.error(err);
-        throw err;
+        dispatch(addAlert({
+          message: err.message,
+          type: 'error',
+        }));
       });
   };
 }
