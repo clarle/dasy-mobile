@@ -35,7 +35,6 @@ export default class SelectTypePage extends Component {
 
   onSelect(type) {
     this.props.selectSubmissionType(type);
-    this.props.nextScreen();
   }
 
   onSelectComment() {
@@ -91,5 +90,4 @@ export default class SelectTypePage extends Component {
 SelectTypePage.propTypes = {
   index: PropTypes.number,
   selectSubmissionType: PropTypes.func,
-  nextScreen: PropTypes.func,
 };

@@ -30,9 +30,7 @@ export default function submissionReducer(state = initialState, action) {
         message: action.payload.message,
       };
     case RESET_SUBMISSION:
-      return {
-        ...initialState,
-      };
+      return initialState;
     default:
       return state;
   }

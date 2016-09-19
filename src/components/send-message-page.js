@@ -45,7 +45,7 @@ export default class SendMessagePage extends Component {
 
     const nameIsValid = validator.isLength(name, { min: 1 });
     const emailIsValid = validator.isLength(email, { min: 1 }) && validator.isEmail(email);
-    const telIsValid = !tel || validator.isMobilePhone(tel);
+    const telIsValid = !tel || validator.isLength(tel, { min: 10 });
     const messageIsValid = validator.isLength(message, { min: 1, max: 10000 });
 
     if (nameIsValid && emailIsValid && telIsValid && messageIsValid) {

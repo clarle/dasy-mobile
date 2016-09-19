@@ -10,8 +10,10 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  selectSubmissionType: (type) => (dispatch(selectSubmissionType(type))),
-  nextScreen: () => (dispatch(push(selectAgency))),
+  selectSubmissionType: (type) => {
+    dispatch(selectSubmissionType(type));
+    dispatch(push(selectAgency));
+  },
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(SelectTypePage);

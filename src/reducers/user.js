@@ -1,6 +1,7 @@
 import {
   CREATE_USER,
   UPDATE_USER,
+  RESET_USER,
 } from '../action-types';
 
 const initialState = {
@@ -23,6 +24,9 @@ export default function userReducer(state = initialState, action) {
         ...state,
         ...action.payload,
       };
+    case RESET_USER: {
+      return initialState;
+    }
     default:
       return state;
   }

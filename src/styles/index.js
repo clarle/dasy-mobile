@@ -22,6 +22,7 @@ export const buttons = StyleSheet.create({
     borderRadius: $.BORDER_RADIUS,
   },
   text: {
+    fontWeight: $.FONT_WEIGHT_REGULAR,
     textAlign: 'center',
   },
   textPrimary: {
