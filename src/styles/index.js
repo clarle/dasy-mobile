@@ -24,6 +24,9 @@ export const buttons = StyleSheet.create({
   text: {
     textAlign: 'center',
   },
+  textPrimary: {
+    color: $.BRAND_PRIMARY,
+  },
 });
 
 export const grid = StyleSheet.create({

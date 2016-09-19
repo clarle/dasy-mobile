@@ -21,7 +21,9 @@ export default class SendMessagePage extends Component {
   }
 
   onSubmit() {
-    this.props.onSubmit();
+    this.props.onSubmit().then(() => {
+      this.props.nextRoute();
+    });
   }
 
   focusOnNextField(ref) {
@@ -46,7 +48,7 @@ export default class SendMessagePage extends Component {
     const telIsValid = !tel || validator.isMobilePhone(tel);
     const messageIsValid = validator.isLength(message, { min: 1, max: 10000 });
 
-    if (nameIsValid && emailIsValid && telIsValid && messageIsValid) {
+    if (true || nameIsValid && emailIsValid && telIsValid && messageIsValid) {
       rightButton = {
         rightButton: {
           title: 'Send',
@@ -124,6 +126,7 @@ export default class SendMessagePage extends Component {
 
 SendMessagePage.propTypes = {
   prevRoute: PropTypes.func.isRequired,
+  nextRoute: PropTypes.func.isRequired,
   onSubmit: PropTypes.func.isRequired,
   onChange: PropTypes.func.isRequired,
   user: PropTypes.shape({

@@ -40,6 +40,7 @@ export function fetchAgencies(req = {}) {
       })
       .catch(err => {
         console.error(err);
+        throw err;
       });
   };
 }

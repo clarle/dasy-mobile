@@ -63,16 +63,18 @@ export function submitSubmission() {
     const data = submission;
     data.user = user;
 
-    fetch(`${HOST}/api/submissions`, {
+    return fetch(`${HOST}/api/submissions`, {
       method: 'POST',
       body: JSON.stringify(data),
     })
       .then(res => res.json())
       .then(res => {
         dispatch(receiveSubmitSubmission(res));
+        return res;
       })
       .catch(err => {
         console.error(err);
+        throw err;
       });
   };
 }
