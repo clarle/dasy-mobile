@@ -4,6 +4,7 @@ import {
 } from '../action-types';
 
 const initialState = {
+  name: '',
   firstName: '',
   lastName: '',
   email: '',

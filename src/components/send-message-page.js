@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import { View, StatusBar } from 'react-native';
 import NavigationBar from 'react-native-navbar';
+import validator from 'validator';
 import InputField from './form/input-field';
 import * as $ from '../styles/variables';
 import navbar from '../styles/navbar';
@@ -19,10 +20,8 @@ export default class SendMessagePage extends Component {
     return text => this.props.onChange(ref, text);
   }
 
-  onSubmit(e) {
-    if (e.nativeEvent.key === 'Enter') {
-      this.props.onSubmit(e);
-    }
+  onSubmit() {
+    this.props.onSubmit();
   }
 
   focusOnNextField(ref) {
@@ -30,6 +29,33 @@ export default class SendMessagePage extends Component {
   }
 
   render() {
+    let rightButton = null;
+
+    const {
+      name,
+      email,
+      tel,
+    } = this.props.user;
+
+    const {
+      message,
+    } = this.props.submission;
+
+    const nameIsValid = validator.isLength(name, { min: 1 });
+    const emailIsValid = validator.isLength(email, { min: 1 }) && validator.isEmail(email);
+    const telIsValid = !tel || validator.isMobilePhone(tel);
+    const messageIsValid = validator.isLength(message, { min: 1, max: 10000 });
+
+    if (nameIsValid && emailIsValid && telIsValid && messageIsValid) {
+      rightButton = {
+        rightButton: {
+          title: 'Send',
+          tintColor: $.WHITE,
+          handler: this.onSubmit,
+        },
+      };
+    }
+
     return (
       <View style={grid.container}>
         <StatusBar translucent barStyle="light-content" />
@@ -47,6 +73,7 @@ export default class SendMessagePage extends Component {
             tintColor: $.WHITE,
             handler: this.props.prevRoute,
           }}
+          {...rightButton}
         />
         <View style={{ flex: 1 }}>
           <InputField
@@ -56,7 +83,7 @@ export default class SendMessagePage extends Component {
             label="Name"
             autoCorrect={false}
             returnKeyType="next"
-            value={this.props.user.name}
+            value={name}
           />
           <InputField
             inputRef={c => { this.formFields.email = c; }}
@@ -67,28 +94,27 @@ export default class SendMessagePage extends Component {
             autoCorrect={false}
             autoCapitalize="none"
             returnKeyType="next"
-            value={this.props.user.email}
+            value={email}
           />
           <InputField
             inputRef={c => { this.formFields.tel = c; }}
             onSubmitEditing={this.focusOnNextField('message')}
             onChangeText={this.onChangeField('tel')}
             label="Phone"
+            placeholder="optional"
             keyboardType="phone-pad"
             returnKeyType="next"
-            value={this.props.user.tel}
+            value={tel}
           />
           <InputField
             inputRef={c => { this.formFields.message = c; }}
-            onKeyPress={this.onSubmit}
             onChangeText={this.onChangeField('message')}
             placeholder="Message"
             multiline
             style={{ flex: 1, paddingTop: $.XS }}
             groupStyle={{ flex: 1 }}
             inputStyle={{ flex: 1, height: null }}
-            returnKeyType="send"
-            value={this.props.submission.message}
+            value={message}
           />
         </View>
       </View>
