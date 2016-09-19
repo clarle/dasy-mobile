@@ -6,6 +6,7 @@ import {
 } from '../action-types';
 import { HOST } from '../constants';
 import { addAlert } from './alerts';
+import { captureException } from '../sentry';
 
 export function requestAgencies() {
   return {
@@ -39,7 +40,7 @@ export function fetchAgencies(req = {}) {
         dispatch(receiveAgencies(res));
       })
       .catch(err => {
-        console.error(err);
+        captureException(err);
         dispatch(addAlert({
           message: err.message,
           type: 'error',

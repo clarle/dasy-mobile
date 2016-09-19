@@ -36,6 +36,7 @@ export default StyleSheet.create({
   },
   message: {
     color: $.WHITE,
+    flex: 1,
   },
   icon: {
     color: $.WHITE,

@@ -1,19 +1,28 @@
-import raven from 'raven';
+/* eslint no-unused-vars: 0 */
+import React from 'react';
+import { Platform } from 'react-native';
+import Raven from 'raven-js';
+import ravenReactNative from 'raven-js/plugins/react-native';
+import { version } from '../package.json';
 
-function noop() {}
+if (process.env.SENTRY_DSN_PUBLIC) {
+  ravenReactNative(Raven);
 
-const sentry = {
-  client: {
-    patchGlobal: noop,
-    captureException: noop,
-  },
-};
-
-if (process.env.NODE_ENV === 'production') {
-  if (process.env.SENTRY_DSN_PUBLIC) {
-    sentry.client = new raven.Client(process.env.SENTRY_DSN_PUBLIC);
-    sentry.client.patchGlobal();
-  }
+  Raven
+    .config(process.env.SENTRY_DSN_PUBLIC, {
+      environment: `mobile-${Platform.OS}`,
+      release: version,
+    })
+    .install();
 }
 
-export default sentry.client;
+export default Raven;
+
+export function captureException(err) {
+  if (process.env.SENTRY_DSN_PUBLIC) {
+    Raven.captureException(err);
+  }
+  if (typeof console !== 'undefined') {
+    console.error(err);
+  }
+}

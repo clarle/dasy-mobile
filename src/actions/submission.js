@@ -8,6 +8,7 @@ import {
 } from '../action-types';
 import { HOST } from '../constants';
 import { addAlert } from './alerts';
+import { captureException } from '../sentry';
 
 export function selectSubmissionType(type) {
   return {
@@ -73,7 +74,7 @@ export function submitSubmission() {
         return res;
       })
       .catch(err => {
-        console.error(err);
+        captureException(err);
         dispatch(addAlert({
           message: err.message,
           type: 'error',

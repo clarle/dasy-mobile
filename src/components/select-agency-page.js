@@ -6,6 +6,8 @@ import {
 } from 'react-native';
 import NavigationBar from 'react-native-navbar';
 import groupBy from 'lodash/groupBy';
+import { SUGGESTION_MAILTO_URL } from '../constants';
+import { handleUrl } from '../utils';
 import ListRow from './list-row';
 import ListHeader from './list-header';
 import LoadingIndicator from './loading-indicator';
@@ -60,6 +62,8 @@ export default class SelectAgencyPage extends Component {
   render() {
     const agencies = this.props.agencies;
     const groupedAgencies = groupBy(agencies, 'type');
+    let loadingIndicator = null;
+    let rightButton = null;
 
     let ds = new ListView.DataSource({
       sectionHeaderHasChanged: (h1, h2) => h1 !== h2,
@@ -68,9 +72,19 @@ export default class SelectAgencyPage extends Component {
 
     ds = ds.cloneWithRowsAndSections(groupedAgencies, Object.keys(groupedAgencies));
 
-    const loadingIndicator = this.props.loading && this.props.agencies.length === 0
-      ? <LoadingIndicator />
-      : null;
+    if (this.props.loading && this.props.agencies.length === 0) {
+      loadingIndicator = <LoadingIndicator />;
+    }
+
+    if (this.props.loading === false && this.props.more === false) {
+      rightButton = {
+        rightButton: {
+          title: 'Suggest',
+          tintColor: $.WHITE,
+          handler: handleUrl(SUGGESTION_MAILTO_URL),
+        },
+      };
+    }
 
     return (
       <View style={grid.container}>
@@ -89,6 +103,7 @@ export default class SelectAgencyPage extends Component {
             tintColor: $.WHITE,
             handler: this.props.prevRoute,
           }}
+          {...rightButton}
         />
         {loadingIndicator}
         <ListView
