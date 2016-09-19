@@ -18,7 +18,7 @@ export function receiveAgencies(res) {
     type: RECEIVE_AGENCIES,
     payload: {
       more: res.more,
-      agencies: res.data,
+      data: res.data,
     },
   };
 }

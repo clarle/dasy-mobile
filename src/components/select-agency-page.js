@@ -110,7 +110,6 @@ SelectAgencyPage.defaultProps = {
 SelectAgencyPage.propTypes = {
   skip: PropTypes.number,
   limit: PropTypes.number,
-  // nextRoute: PropTypes.func,
   prevRoute: PropTypes.func,
   requestAgencies: PropTypes.func,
   selectAgency: PropTypes.func,

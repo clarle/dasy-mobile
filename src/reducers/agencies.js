@@ -23,7 +23,7 @@ export default function agenciesReducer(state = initialState, action) {
         ...state,
         loading: false,
         more: action.payload.more,
-        data: uniqBy(state.data.concat(action.payload.agencies), 'id'),
+        data: uniqBy(state.data.concat(action.payload.data), 'id'),
       };
     case RESET_AGENCIES:
       return {
