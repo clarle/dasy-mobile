@@ -1,3 +1,4 @@
+import uniqBy from 'lodash/uniqBy';
 import {
   REQUEST_AGENCIES,
   RECEIVE_AGENCIES,
@@ -9,7 +10,6 @@ const initialState = {
   more: false,
   data: [],
 };
-
 
 export default function agenciesReducer(state = initialState, action) {
   switch (action.type) {
@@ -23,7 +23,7 @@ export default function agenciesReducer(state = initialState, action) {
         ...state,
         loading: false,
         more: action.payload.more,
-        data: state.data.concat(action.payload.agencies),
+        data: uniqBy(state.data.concat(action.payload.agencies), 'id'),
       };
     case RESET_AGENCIES:
       return {

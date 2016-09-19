@@ -11,6 +11,7 @@ import NavigationBar from 'react-native-navbar';
 import groupBy from 'lodash/groupBy';
 import ListRow from './list-row';
 import ListHeader from './list-header';
+import LoadingIndicator from './loading-indicator';
 import * as $ from '../styles/variables';
 import { grid } from '../styles';
 import navbar from '../styles/navbar';
@@ -30,6 +31,12 @@ export default class SelectAgencyPage extends Component {
     this.requestAgencies();
   }
 
+  onEndReached() {
+    if (this.props.more) {
+      this.requestAgencies();
+    }
+  }
+
   selectAgency(agency) {
     return () => this.props.selectAgency(agency);
   }
@@ -37,7 +44,7 @@ export default class SelectAgencyPage extends Component {
   requestAgencies() {
     return this.props.requestAgencies({
       query: {
-        skip: this.props.skip,
+        skip: this.props.agencies.length,
         limit: this.props.limit,
       },
     });
@@ -52,11 +59,6 @@ export default class SelectAgencyPage extends Component {
     return <ListRow text={agency.name} onPress={this.selectAgency(agency)} />;
   }
 
-  onEndReached() {
-    console.info('reached end of list');
-    return;
-  }
-
   render() {
     const agencies = this.props.agencies;
     const groupedAgencies = groupBy(agencies, 'type');
@@ -67,6 +69,10 @@ export default class SelectAgencyPage extends Component {
     });
 
     ds = ds.cloneWithRowsAndSections(groupedAgencies, Object.keys(groupedAgencies));
+
+    const loadingIndicator = this.props.loading && this.props.agencies.length === 0
+      ? <LoadingIndicator />
+      : null;
 
     return (
       <View style={grid.container}>
@@ -86,6 +92,7 @@ export default class SelectAgencyPage extends Component {
             handler: this.props.prevRoute,
           }}
         />
+        {loadingIndicator}
         <ListView
           style={list.base}
           dataSource={ds}
@@ -99,8 +106,7 @@ export default class SelectAgencyPage extends Component {
 }
 
 SelectAgencyPage.defaultProps = {
-  skip: 0,
-  limit: 1000,
+  limit: 20,
 };
 
 SelectAgencyPage.propTypes = {
@@ -113,6 +119,6 @@ SelectAgencyPage.propTypes = {
   agencies: PropTypes.arrayOf(PropTypes.shape({
     id: PropTypes.string, /* eslint "react/no-unused-prop-types": 0 */
   })),
-  // loading: PropTypes.bool,
-  // more: PropTypes.bool,
+  loading: PropTypes.bool,
+  more: PropTypes.bool,
 };
