@@ -3,6 +3,7 @@ import {
   REQUEST_AGENCIES,
   RECEIVE_AGENCIES,
   RESET_AGENCIES,
+  SEARCH_AGENCIES,
 } from '../action-types';
 import { HOST } from '../constants';
 import { addAlert } from './alerts';
@@ -46,5 +47,14 @@ export function fetchAgencies(req = {}) {
           type: 'error',
         }));
       });
+  };
+}
+
+export function searchAgencies(str) {
+  return {
+    type: SEARCH_AGENCIES,
+    payload: {
+      search: str,
+    },
   };
 }

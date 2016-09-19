@@ -6,11 +6,13 @@ import {
 } from 'react-native';
 import NavigationBar from 'react-native-navbar';
 import groupBy from 'lodash/groupBy';
+import throttle from 'lodash/throttle';
 import { SUGGESTION_MAILTO_URL } from '../constants';
 import { handleUrl } from '../utils';
 import ListRow from './list-row';
 import ListHeader from './list-header';
 import LoadingIndicator from './loading-indicator';
+import SearchBar from './search-bar';
 import * as $ from '../styles/variables';
 import { grid } from '../styles';
 import navbar from '../styles/navbar';
@@ -20,7 +22,8 @@ export default class SelectAgencyPage extends Component {
   constructor(props) {
     super(props);
     this.selectAgency = this.selectAgency.bind(this);
-    this.requestAgencies = this.requestAgencies.bind(this);
+    this.requestAgencies = throttle(this.requestAgencies.bind(this), 100);
+    this.searchAgencies = this.searchAgencies.bind(this);
     this.renderHeader = this.renderHeader.bind(this);
     this.renderRow = this.renderRow.bind(this);
     this.onEndReached = this.onEndReached.bind(this);
@@ -41,12 +44,25 @@ export default class SelectAgencyPage extends Component {
   }
 
   requestAgencies() {
+    const query = {
+      skip: this.props.agencies.length,
+      limit: this.props.limit,
+      sort: 'type,name',
+    };
+
+    if (this.props.search) {
+      query.q = this.props.search;
+    }
+
     return this.props.requestAgencies({
-      query: {
-        skip: this.props.agencies.length,
-        limit: this.props.limit,
-        sort: 'type,name',
-      },
+      query,
+    });
+  }
+
+  searchAgencies(str) {
+    this.props.onSearch(str);
+    setTimeout(() => {
+      this.requestAgencies();
     });
   }
 
@@ -105,6 +121,7 @@ export default class SelectAgencyPage extends Component {
           }}
           {...rightButton}
         />
+        <SearchBar value={this.props.search} onChange={this.searchAgencies} autoCorrect={false} />
         {loadingIndicator}
         <ListView
           style={list.base}
@@ -133,4 +150,6 @@ SelectAgencyPage.propTypes = {
   })),
   loading: PropTypes.bool,
   more: PropTypes.bool,
+  search: PropTypes.string,
+  onSearch: PropTypes.func.isRequired,
 };
