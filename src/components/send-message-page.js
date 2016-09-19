@@ -48,7 +48,7 @@ export default class SendMessagePage extends Component {
     const telIsValid = !tel || validator.isMobilePhone(tel);
     const messageIsValid = validator.isLength(message, { min: 1, max: 10000 });
 
-    if (true || nameIsValid && emailIsValid && telIsValid && messageIsValid) {
+    if (nameIsValid && emailIsValid && telIsValid && messageIsValid) {
       rightButton = {
         rightButton: {
           title: 'Send',
