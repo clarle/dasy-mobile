@@ -1,24 +1,40 @@
-/* eslint "react/prefer-stateless-function": 0 */
-/* eslint no-useless-constructor: 0 */
-
 import React, { Component, PropTypes } from 'react';
-import { View, Text, StatusBar } from 'react-native';
+import { View, StatusBar } from 'react-native';
 import NavigationBar from 'react-native-navbar';
+import InputField from './form/input-field';
 import * as $ from '../styles/variables';
-import styles from '../styles/navbar';
+import navbar from '../styles/navbar';
+import { grid } from '../styles';
 
 export default class SendMessagePage extends Component {
   constructor(props) {
-    /* eslint no-useless-constructor: 0 */
     super(props);
+    this.formFields = {};
+    this.focusOnNextField = this.focusOnNextField.bind(this);
+    this.onChangeField = this.onChangeField.bind(this);
+    this.onSubmit = this.onSubmit.bind(this);
+  }
+
+  onChangeField(ref) {
+    return text => this.props.onChange(ref, text);
+  }
+
+  onSubmit(e) {
+    if (e.nativeEvent.key === 'Enter') {
+      this.props.onSubmit(e);
+    }
+  }
+
+  focusOnNextField(ref) {
+    return () => this.formFields[ref].focus();
   }
 
   render() {
     return (
-      <View>
+      <View style={grid.container}>
         <StatusBar translucent barStyle="light-content" />
         <NavigationBar
-          style={styles.base}
+          style={navbar.base}
           statusBar={{
             tintColor: $.BRAND_PRIMARY,
           }}
@@ -32,12 +48,64 @@ export default class SendMessagePage extends Component {
             handler: this.props.prevRoute,
           }}
         />
-        <Text>Enter Message</Text>
+        <View style={{ flex: 1 }}>
+          <InputField
+            inputRef={c => { this.formFields.name = c; }}
+            onSubmitEditing={this.focusOnNextField('email')}
+            onChangeText={this.onChangeField('name')}
+            label="Name"
+            autoCorrect={false}
+            returnKeyType="next"
+            value={this.props.user.name}
+          />
+          <InputField
+            inputRef={c => { this.formFields.email = c; }}
+            onSubmitEditing={this.focusOnNextField('tel')}
+            onChangeText={this.onChangeField('email')}
+            label="Email"
+            keyboardType="email-address"
+            autoCorrect={false}
+            autoCapitalize="none"
+            returnKeyType="next"
+            value={this.props.user.email}
+          />
+          <InputField
+            inputRef={c => { this.formFields.tel = c; }}
+            onSubmitEditing={this.focusOnNextField('message')}
+            onChangeText={this.onChangeField('tel')}
+            label="Phone"
+            keyboardType="phone-pad"
+            returnKeyType="next"
+            value={this.props.user.tel}
+          />
+          <InputField
+            inputRef={c => { this.formFields.message = c; }}
+            onKeyPress={this.onSubmit}
+            onChangeText={this.onChangeField('message')}
+            placeholder="Message"
+            multiline
+            style={{ flex: 1, paddingTop: $.XS }}
+            groupStyle={{ flex: 1 }}
+            inputStyle={{ flex: 1, height: null }}
+            returnKeyType="send"
+            value={this.props.submission.message}
+          />
+        </View>
       </View>
     );
   }
 }
 
 SendMessagePage.propTypes = {
-  prevRoute: PropTypes.func,
+  prevRoute: PropTypes.func.isRequired,
+  onSubmit: PropTypes.func.isRequired,
+  onChange: PropTypes.func.isRequired,
+  user: PropTypes.shape({
+    name: PropTypes.string,
+    email: PropTypes.string,
+    tel: PropTypes.string,
+  }),
+  submission: PropTypes.shape({
+    message: PropTypes.string,
+  }),
 };

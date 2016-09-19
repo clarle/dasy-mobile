@@ -1,22 +1,78 @@
 import {
-  SELECT_SUBMISSION,
-  SELECT_AGENCY,
+  SELECT_SUBMISSION_TYPE,
+  SELECT_SUBMISSION_AGENCY,
+  UPDATE_SUBMISSION_MESSAGE,
+  START_SUBMIT_SUBMISSION,
+  RECEIVE_SUBMIT_SUBMISSION,
+  RESET_SUBMISSION,
 } from '../action-types';
+
+import { HOST } from '../constants';
 
 export function selectSubmissionType(type) {
   return {
-    type: SELECT_SUBMISSION,
+    type: SELECT_SUBMISSION_TYPE,
     payload: {
       type,
     },
   };
 }
 
-export function selectAgency(id) {
+export function selectSubmissionAgency(id) {
   return {
-    type: SELECT_AGENCY,
+    type: SELECT_SUBMISSION_AGENCY,
     payload: {
       id,
     },
+  };
+}
+
+export function updateSubmissionMessage(message) {
+  return {
+    type: UPDATE_SUBMISSION_MESSAGE,
+    payload: {
+      message,
+    },
+  };
+}
+
+/* export */function startSubmitSubmission() {
+  return {
+    type: START_SUBMIT_SUBMISSION,
+  };
+}
+
+/* export */function receiveSubmitSubmission(response) {
+  return {
+    type: RECEIVE_SUBMIT_SUBMISSION,
+    payload: response,
+  };
+}
+
+export function resetSubmission() {
+  return {
+    type: RESET_SUBMISSION,
+  };
+}
+
+export function submitSubmission() {
+  return (dispatch, getState) => {
+    dispatch(startSubmitSubmission());
+
+    const { submission, user } = getState();
+    const data = submission;
+    data.user = user;
+
+    fetch(`${HOST}/api/submissions`, {
+      method: 'POST',
+      body: JSON.stringify(data),
+    })
+      .then(res => res.json())
+      .then(res => {
+        dispatch(receiveSubmitSubmission(res));
+      })
+      .catch(err => {
+        console.error(err);
+      });
   };
 }

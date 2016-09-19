@@ -2,7 +2,7 @@ import { connect } from 'react-redux';
 import SelectAgencyPage from '../components/select-agency-page';
 import { push, prev } from '../actions/navigation';
 import { fetchAgencies, resetAgencies } from '../actions/agencies';
-import { selectAgency } from '../actions/submission';
+import { selectSubmissionAgency } from '../actions/submission';
 import { sendMessage } from '../routes';
 
 const mapStateToProps = (state) => ({
@@ -19,7 +19,7 @@ const mapDispatchToProps = (dispatch) => ({
   nextRoute: () => dispatch(push(sendMessage)),
   requestAgencies: req => dispatch(fetchAgencies(req)),
   selectAgency: agency => {
-    dispatch(selectAgency(agency.id));
+    dispatch(selectSubmissionAgency(agency.id));
     dispatch(push(sendMessage));
   },
 });

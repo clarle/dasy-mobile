@@ -30,7 +30,7 @@ export default StyleSheet.create({
     fontSize: 17,
   },
   icon: {
-    color: $.TEXT_MUTED,
+    color: $.ICON_COLOR,
     fontSize: 19,
   },
   header: {

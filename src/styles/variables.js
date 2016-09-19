@@ -1,9 +1,9 @@
 export const WHITE = '#fff';
 export const BLACK = '#222';
 export const TEXT_COLOR = WHITE;
-export const TEXT_MUTED = '#ddd';
+export const TEXT_MUTED = '#999';
 export const BRAND_PRIMARY = '#56C1B3';
-export const ICON_COLOR = TEXT_MUTED;
+export const ICON_COLOR = '#ddd';
 export const GRAY = '#ddd';
 export const BG = '#F7F7F7';
 

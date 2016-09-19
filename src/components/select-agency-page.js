@@ -1,6 +1,3 @@
-/* eslint "react/prefer-stateless-function": 0 */
-/* eslint no-useless-constructor: 0 */
-
 import React, { Component, PropTypes } from 'react';
 import {
   ListView,

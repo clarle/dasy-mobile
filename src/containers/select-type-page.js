@@ -1,6 +1,3 @@
-/* eslint "react/prefer-stateless-function": 0 */
-/* eslint no-useless-constructor: 0 */
-
 import { connect } from 'react-redux';
 import { SUBMISSION_TYPES } from '../constants';
 import { push } from '../actions/navigation';
