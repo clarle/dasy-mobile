@@ -26,7 +26,6 @@ export default StyleSheet.create({
     textAlign: 'center',
   },
   actions: {
-    backgroundColor: 'red',
     position: 'absolute',
     bottom: ($.XL * 2) + $.MD,
     left: paddingX,

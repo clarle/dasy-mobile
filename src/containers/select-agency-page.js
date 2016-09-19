@@ -17,7 +17,7 @@ const mapDispatchToProps = (dispatch) => ({
     dispatch(resetAgencies());
   },
   nextRoute: () => dispatch(push(sendMessage)),
-  requestAgencies: () => dispatch(fetchAgencies()),
+  requestAgencies: req => dispatch(fetchAgencies(req)),
   selectAgency: agency => {
     dispatch(selectAgency(agency.id));
     dispatch(push(sendMessage));

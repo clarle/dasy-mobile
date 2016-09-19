@@ -1,3 +1,4 @@
+import qs from 'qs';
 import {
   REQUEST_AGENCIES,
   RECEIVE_AGENCIES,
@@ -22,17 +23,17 @@ export function receiveAgencies(res) {
   };
 }
 
-export function resetAgencies(res) {
+export function resetAgencies() {
   return {
     type: RESET_AGENCIES,
   };
 }
 
-export function fetchAgencies() {
+export function fetchAgencies(req = {}) {
   return dispatch => {
     dispatch(requestAgencies());
 
-    fetch(`${HOST}/api/agencies`)
+    fetch(`${HOST}/api/agencies?${qs.stringify(req.query)}`)
       .then(res => res.json())
       .then(res => {
         dispatch(receiveAgencies(res));

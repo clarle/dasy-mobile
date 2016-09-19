@@ -1,6 +1,11 @@
 export const WHITE = '#fff';
+export const BLACK = '#222';
 export const TEXT_COLOR = WHITE;
+export const TEXT_MUTED = '#ddd';
 export const BRAND_PRIMARY = '#56C1B3';
+export const ICON_COLOR = TEXT_MUTED;
+export const GRAY = '#ddd';
+export const BG = '#F7F7F7';
 
 export const COMMENT = '#37B04C';
 export const REQUEST = '#CD7901';
@@ -34,3 +39,4 @@ export const SM = 10;
 export const XS = 5;
 
 export const BORDER_RADIUS = 5;
+export const BORDER = '#f2f2f2';

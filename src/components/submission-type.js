@@ -1,5 +1,6 @@
 import React, { PropTypes } from 'react';
-import { View, Text, TouchableHighlight } from 'react-native';
+import { View, Text, TouchableOpacity } from 'react-native';
+import capitalize from 'lodash/capitalize';
 import { buttons } from '../styles';
 import styles from '../styles/submission-type';
 
@@ -8,11 +9,13 @@ export default function SubmissionType(props) {
     <View style={[styles.base, styles[props.type]]}>
       <Text style={styles.title}>{props.heading}</Text>
       <Text style={styles.subtitle}>{props.description}</Text>
-      <TouchableHighlight onPress={props.onSelect} style={styles.actions}>
-        <Text style={[buttons.base, styles[`${props.type}Text`]]}>
-          Select {props.type}
-        </Text>
-      </TouchableHighlight>
+      <TouchableOpacity onPress={props.onSelect} style={styles.actions}>
+        <View style={buttons.base}>
+          <Text style={[buttons.text, styles[`${props.type}Text`]]}>
+            Select {capitalize(props.type)}
+          </Text>
+        </View>
+      </TouchableOpacity>
     </View>
   );
 }
