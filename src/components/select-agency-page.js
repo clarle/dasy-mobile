@@ -46,6 +46,7 @@ export default class SelectAgencyPage extends Component {
       query: {
         skip: this.props.agencies.length,
         limit: this.props.limit,
+        sort: 'type,name',
       },
     });
   }
