@@ -6,6 +6,12 @@ import InputField from './form/input-field';
 import * as $ from '../styles/variables';
 import navbar from '../styles/navbar';
 import { grid } from '../styles';
+import {
+  trackSubmissionMessage,
+  trackUserName,
+  trackUserTel,
+  trackUserEmail,
+} from '../mixpanel';
 
 export default class SendMessagePage extends Component {
   constructor(props) {
@@ -14,6 +20,10 @@ export default class SendMessagePage extends Component {
     this.focusOnNextField = this.focusOnNextField.bind(this);
     this.onChangeField = this.onChangeField.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
+    this.onBlurName = this.onBlurName.bind(this);
+    this.onBlurEmail = this.onBlurEmail.bind(this);
+    this.onBlurTel = this.onBlurTel.bind(this);
+    this.onBlurMessage = this.onBlurMessage.bind(this);
   }
 
   onChangeField(ref) {
@@ -24,6 +34,22 @@ export default class SendMessagePage extends Component {
     this.props.onSubmit().then(() => {
       this.props.nextRoute();
     });
+  }
+
+  onBlurName() {
+    return trackUserName(this.props.user.name);
+  }
+
+  onBlurEmail() {
+    return trackUserEmail(this.props.user.email);
+  }
+
+  onBlurTel() {
+    return trackUserTel(this.props.user.tel);
+  }
+
+  onBlurMessage() {
+    return trackSubmissionMessage(this.props.submission.message);
   }
 
   focusOnNextField(ref) {
@@ -82,6 +108,7 @@ export default class SendMessagePage extends Component {
             inputRef={c => { this.formFields.name = c; }}
             onSubmitEditing={this.focusOnNextField('email')}
             onChangeText={this.onChangeField('name')}
+            onBlur={this.onBlurName}
             label="Name"
             autoCorrect={false}
             returnKeyType="next"
@@ -91,6 +118,7 @@ export default class SendMessagePage extends Component {
             inputRef={c => { this.formFields.email = c; }}
             onSubmitEditing={this.focusOnNextField('tel')}
             onChangeText={this.onChangeField('email')}
+            onBlur={this.onBlurEmail}
             label="Email"
             keyboardType="email-address"
             autoCorrect={false}
@@ -102,6 +130,7 @@ export default class SendMessagePage extends Component {
             inputRef={c => { this.formFields.tel = c; }}
             onSubmitEditing={this.focusOnNextField('message')}
             onChangeText={this.onChangeField('tel')}
+            onBlur={this.onBlurTel}
             label="Phone"
             placeholder="optional"
             keyboardType="phone-pad"
@@ -111,6 +140,7 @@ export default class SendMessagePage extends Component {
           <InputField
             inputRef={c => { this.formFields.message = c; }}
             onChangeText={this.onChangeField('message')}
+            onBlur={this.onBlurMessage}
             placeholder="Message"
             multiline
             style={{ flex: 1, paddingTop: $.XS }}

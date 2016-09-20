@@ -1,0 +1,4 @@
+target 'dasy' do
+  project 'dasy.xcodeproj'
+  pod 'Mixpanel'
+end

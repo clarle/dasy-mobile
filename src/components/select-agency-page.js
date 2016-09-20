@@ -17,6 +17,7 @@ import * as $ from '../styles/variables';
 import { grid } from '../styles';
 import navbar from '../styles/navbar';
 import list from '../styles/list';
+import { trackSubmissionAgency } from '../mixpanel';
 
 export default class SelectAgencyPage extends Component {
   constructor(props) {
@@ -40,6 +41,7 @@ export default class SelectAgencyPage extends Component {
   }
 
   selectAgency(agency) {
+    trackSubmissionAgency(agency.id);
     return () => this.props.selectAgency(agency);
   }
 

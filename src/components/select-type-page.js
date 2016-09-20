@@ -3,6 +3,7 @@ import { View, Text, StatusBar } from 'react-native';
 import Swiper from 'react-native-swiper';
 import swiper from '../styles/swiper';
 import SubmissionType from '../components/submission-type';
+import { trackSubmissionType } from '../mixpanel';
 
 const activeDot = (
   <View
@@ -34,6 +35,7 @@ export default class SelectTypePage extends Component {
   }
 
   onSelect(type) {
+    trackSubmissionType(type);
     this.props.selectSubmissionType(type);
   }
 
