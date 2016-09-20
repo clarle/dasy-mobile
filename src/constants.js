@@ -1,15 +1,32 @@
 /* eslint max-len: 0 */
 import env from 'react-native-config';
+import map from 'lodash/map';
+import assign from 'lodash/assign';
 
 if (!env.MIXPANEL_ID) {
   throw new Error('MIXPANEL_ID is required.');
 }
 
-export const SUBMISSION_TYPES = [
-  'comment',
-  'request',
-  'question',
-];
+export const SUBMISSION_TYPES_MAP = {
+  comment: {
+    title: 'Positive Comment',
+    description: 'Praise agencies for the things they are doing right, so they can continue to do so!',
+  },
+  idea: {
+    title: 'Idea',
+    description: 'Have a recommendation? Improve the public agency\'s service with an idea.',
+  },
+  question: {
+    title: 'Question',
+    description: 'New to a city? Have feedback for your local tranportation agency? This is the place to go.',
+  },
+};
+
+export const SUBMISSION_TYPES = map(SUBMISSION_TYPES_MAP, (value, key) => (assign(
+  {},
+  value,
+  { key }
+)));
 
 export const HOST = env.HOST || (process.env.NODE_ENV === 'production'
                                   ? 'https://dasy-labs.herokuapp.com'

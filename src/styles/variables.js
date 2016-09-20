@@ -11,11 +11,11 @@ export const GRAY = '#ddd';
 export const BG = '#F7F7F7';
 
 export const COMMENT = '#37B04C';
-export const REQUEST = '#CD7901';
+export const IDEA = '#CD7901';
 export const QUESTION = '#439FC9';
 
 export const COMMENT_TEXT = '#37B04C';
-export const REQUEST_TEXT = '#CD7901';
+export const IDEA_TEXT = '#CD7901';
 export const QUESTION_TEXT = '#439FC9';
 
 export const FONT_SIZE = 16;

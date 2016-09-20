@@ -34,8 +34,8 @@ export default StyleSheet.create({
   comment: {
     backgroundColor: $.COMMENT,
   },
-  request: {
-    backgroundColor: $.REQUEST,
+  idea: {
+    backgroundColor: $.IDEA,
   },
   question: {
     backgroundColor: $.QUESTION,
@@ -43,8 +43,8 @@ export default StyleSheet.create({
   commentText: {
     color: $.COMMENT_TEXT,
   },
-  requestText: {
-    color: $.REQUEST_TEXT,
+  ideaText: {
+    color: $.IDEA_TEXT,
   },
   questionText: {
     color: $.QUESTION_TEXT,

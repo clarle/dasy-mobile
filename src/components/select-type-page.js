@@ -4,6 +4,7 @@ import Swiper from 'react-native-swiper';
 import swiper from '../styles/swiper';
 import SubmissionType from '../components/submission-type';
 import { trackSubmissionType } from '../mixpanel';
+import { SUBMISSION_TYPES } from '../constants';
 
 const activeDot = (
   <View
@@ -29,26 +30,11 @@ export default class SelectTypePage extends Component {
   constructor(props) {
     super(props);
     this.onSelect = this.onSelect.bind(this);
-    this.onSelectComment = this.onSelectComment.bind(this);
-    this.onSelectRequest = this.onSelectRequest.bind(this);
-    this.onSelectQuestion = this.onSelectQuestion.bind(this);
   }
 
   onSelect(type) {
     trackSubmissionType(type);
     this.props.selectSubmissionType(type);
-  }
-
-  onSelectComment() {
-    this.onSelect('comment');
-  }
-
-  onSelectRequest() {
-    this.onSelect('request');
-  }
-
-  onSelectQuestion() {
-    this.onSelect('question');
   }
 
   render() {
@@ -65,24 +51,15 @@ export default class SelectTypePage extends Component {
           prevButton={prevButton}
           nextButton={nextButton}
         >
-          <SubmissionType
-            heading="Positive Comment"
-            description="Praise agencies for the things they are doing right, so they can continue to do so!"
-            type="comment"
-            onSelect={this.onSelectComment}
-          />
-          <SubmissionType
-            heading="Service Request"
-            description="Have a problem? Is something broken? Let your city or local agency know!"
-            type="request"
-            onSelect={this.onSelectRequest}
-          />
-          <SubmissionType
-            heading="Question"
-            description="New to a city? Have feedback for your local tranportation agency? This is the place to go."
-            type="question"
-            onSelect={this.onSelectQuestion}
-          />
+          {SUBMISSION_TYPES.map(submissionType => (
+            <SubmissionType
+              key={submissionType.key}
+              heading={submissionType.title}
+              description={submissionType.description}
+              type={submissionType.key}
+              onSelect={() => (this.onSelect(submissionType.key))}
+            />
+          ))}
         </Swiper>
       </View>
     );
