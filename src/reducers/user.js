@@ -6,8 +6,6 @@ import {
 
 const initialState = {
   name: '',
-  firstName: '',
-  lastName: '',
   email: '',
   tel: '',
   id: null,
