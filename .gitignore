@@ -2,8 +2,6 @@
 #
 .DS_Store
 
-Pods/
-
 # Xcode
 #
 build/
@@ -41,3 +39,7 @@ buck-out/
 \.buckd/
 android/app/libs
 android/keystores/debug.keystore
+
+# OTHER
+Pods/
+.env

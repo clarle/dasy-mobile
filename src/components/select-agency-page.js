@@ -41,8 +41,10 @@ export default class SelectAgencyPage extends Component {
   }
 
   selectAgency(agency) {
-    trackSubmissionAgency(agency.id);
-    return () => this.props.selectAgency(agency);
+    return () => {
+      trackSubmissionAgency(agency.id);
+      return this.props.selectAgency(agency);
+    };
   }
 
   requestAgencies() {
