@@ -8,7 +8,6 @@ import submission from '../styles/submission-type';
 export default class ThankYouPage extends Component {
   constructor(props) {
     super(props);
-    this.handleUrl = this.handleUrl.bind(this);
   }
 
   componentDidMount() {
