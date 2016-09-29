@@ -3,6 +3,7 @@ import {
   ListView,
   View,
   StatusBar,
+  Text,
 } from 'react-native';
 import NavigationBar from 'react-native-navbar';
 import groupBy from 'lodash/groupBy';
@@ -84,6 +85,7 @@ export default class SelectAgencyPage extends Component {
     const groupedAgencies = groupBy(agencies, 'type');
     let loadingIndicator = null;
     let rightButton = null;
+    let fallbackMessage = null;
 
     let ds = new ListView.DataSource({
       sectionHeaderHasChanged: (h1, h2) => h1 !== h2,
@@ -104,6 +106,14 @@ export default class SelectAgencyPage extends Component {
           handler: handleUrl(SUGGESTION_MAILTO_URL),
         },
       };
+    }
+
+    if (!this.props.loading && this.props.search && this.props.agencies.length === 0) {
+      fallbackMessage = (
+        <Text style={list.fallbackText}>
+          No agencies match your search. Tap suggest to let us know about new agencies.
+        </Text>
+      );
     }
 
     return (
@@ -127,6 +137,7 @@ export default class SelectAgencyPage extends Component {
         />
         <SearchBar value={this.props.search} onChange={this.searchAgencies} autoCorrect={false} />
         {loadingIndicator}
+        {fallbackMessage}
         <ListView
           style={list.base}
           dataSource={ds}

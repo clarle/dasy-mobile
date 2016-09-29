@@ -49,4 +49,13 @@ export default StyleSheet.create({
   headerText: {
     color: $.BLACK,
   },
+  fallbackText: {
+    backgroundColor: $.WHITE,
+    color: $.TEXT_MUTED,
+    fontStyle: 'italic',
+    paddingRight: paddingX,
+    paddingLeft: paddingX,
+    paddingTop: paddingY,
+    paddingBottom: paddingY,
+  },
 });
