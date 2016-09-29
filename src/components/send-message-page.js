@@ -6,6 +6,7 @@ import InputField from './form/input-field';
 import * as $ from '../styles/variables';
 import navbar from '../styles/navbar';
 import { grid } from '../styles';
+import { formatTel } from '../utils';
 import {
   trackSubmissionMessage,
   trackUserName,
@@ -27,7 +28,13 @@ export default class SendMessagePage extends Component {
   }
 
   onChangeField(ref) {
-    return text => this.props.onChange(ref, text);
+    return text => {
+      if (ref === 'tel') {
+        /* eslint no-param-reassign: 0 */
+        text = text.replace(/\D/g, '');
+      }
+      return this.props.onChange(ref, text);
+    };
   }
 
   onSubmit() {
@@ -135,7 +142,7 @@ export default class SendMessagePage extends Component {
             placeholder="optional"
             keyboardType="phone-pad"
             returnKeyType="next"
-            value={tel}
+            value={formatTel(tel)}
           />
           <InputField
             inputRef={c => { this.formFields.message = c; }}

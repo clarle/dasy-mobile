@@ -20,3 +20,13 @@ export function handleUrl(url) {
       });
   };
 }
+
+export function formatTel(tel) {
+  let result = '';
+  const numbers = tel.replace(/\D/g, '');
+  const decorationCharacters = { 0: '(', 3: ') ', 6: ' - ' };
+  for (let i = 0; i < numbers.length; i += 1) {
+    result += (decorationCharacters[i] || '') + numbers[i];
+  }
+  return result;
+}
