@@ -8,17 +8,17 @@ if (!env.MIXPANEL_ID) {
 }
 
 export const SUBMISSION_TYPES_MAP = {
-  comment: {
-    title: 'Positive Comment',
-    description: 'Praise agencies for the things they are doing right, so they can continue to do so!',
+  compliment: {
+    title: 'Compliment',
+    description: 'Send a thank you and praise for what they’re doing right! Happier agencies lead to more responsive agencies.',
   },
   idea: {
     title: 'Idea',
-    description: 'Have a recommendation? Improve the public agency\'s service with an idea.',
+    description: 'Want to have a new event in your area? Maybe you’re interested in adding to the new developments in downtown.',
   },
   question: {
     title: 'Question',
-    description: 'New to a city? Have feedback for your local tranportation agency? This is the place to go.',
+    description: 'Just visiting a city and want to find out local events? Or want to ask who to contact in the agency?',
   },
 };
 

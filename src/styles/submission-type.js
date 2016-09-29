@@ -31,7 +31,7 @@ export default StyleSheet.create({
     left: paddingX,
     right: paddingX,
   },
-  comment: {
+  compliment: {
     backgroundColor: $.COMMENT,
   },
   idea: {
@@ -40,7 +40,7 @@ export default StyleSheet.create({
   question: {
     backgroundColor: $.QUESTION,
   },
-  commentText: {
+  complimentText: {
     color: $.COMMENT_TEXT,
   },
   ideaText: {

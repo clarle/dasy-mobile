@@ -4,9 +4,10 @@ import {
   UPDATE_SUBMISSION_MESSAGE,
   RESET_SUBMISSION,
 } from '../action-types';
+import { SUBMISSION_TYPES } from '../constants';
 
 const initialState = {
-  type: 'comment',
+  type: SUBMISSION_TYPES[0].key,
   agencyId: null,
   message: '',
   imgUrl: '',

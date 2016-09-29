@@ -21,8 +21,10 @@ export default class ThankYouPage extends Component {
     return (
       <View style={welcome.container}>
         <StatusBar translucent barStyle="light-content" />
-        <Text style={welcome.title}>Thank you</Text>
-        <Text style={welcome.subtitle}>Check your email.</Text>
+        <Text style={welcome.title}>Awesome!</Text>
+        <Text style={welcome.subtitle}>
+          Thanks for your public service. Check for a confirmation email.
+        </Text>
         <View style={submission.actions}>
           <TouchableOpacity
             onPress={handleUrl('https://www.facebook.com/dasylabs')}
