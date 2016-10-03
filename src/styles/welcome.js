@@ -16,7 +16,7 @@ export default StyleSheet.create({
   },
   subtitle: {
     color: $.TEXT_COLOR,
-    fontSize: $.FONT_SIZE_H4,
+    fontSize: $.FONT_SIZE_H5,
     fontWeight: $.FONT_WEIGHT_LIGHT,
     lineHeight: $.FONT_SIZE_H4 * $.LINE_HEIGHT_HEADINGS,
     marginTop: $.XS,

@@ -14,7 +14,7 @@ export default class HomePage extends Component {
       <View style={welcome.container}>
         <StatusBar translucent barStyle="light-content" />
         <Text style={welcome.title}>Dasy</Text>
-        <Text style={welcome.subtitle}>Close the loop.</Text>
+        <Text style={welcome.subtitle}>Message your public agencies.</Text>
       </View>
     );
   }

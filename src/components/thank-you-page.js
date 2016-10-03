@@ -28,7 +28,10 @@ export default class ThankYouPage extends Component {
         <StatusBar translucent barStyle="light-content" />
         <Text style={welcome.title}>Awesome!</Text>
         <Text style={welcome.subtitle}>
-          Thanks for your public service. Check for a confirmation email.
+          Thanks for your public service.
+        </Text>
+        <Text style={welcome.subtitle}>
+          Check for a confirmation email.
         </Text>
         <View style={submission.actions}>
           <TouchableOpacity
