@@ -21,12 +21,18 @@ export const buttons = StyleSheet.create({
     padding: $.SM,
     borderRadius: $.BORDER_RADIUS,
   },
+  transparent: {
+    backgroundColor: null,
+  },
   text: {
     fontWeight: $.FONT_WEIGHT_REGULAR,
     textAlign: 'center',
   },
   textPrimary: {
     color: $.BRAND_PRIMARY,
+  },
+  textTransparent: {
+    color: $.WHITE,
   },
 });
 

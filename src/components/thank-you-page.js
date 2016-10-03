@@ -8,12 +8,17 @@ import submission from '../styles/submission-type';
 export default class ThankYouPage extends Component {
   constructor(props) {
     super(props);
+    this.nextScreen = this.nextScreen.bind(this);
   }
 
   componentDidMount() {
     setTimeout(() => {
-      this.props.nextScreen();
-    }, 2000);
+      this.nextScreen();
+    }, 6000);
+  }
+
+  nextScreen() {
+    return this.props.nextScreen();
   }
 
   render() {
@@ -38,10 +43,20 @@ export default class ThankYouPage extends Component {
           </TouchableOpacity>
           <TouchableOpacity
             onPress={handleUrl('https://twitter.com/dasylabs')}
+            style={{ marginBottom: $.MD }}
           >
             <View style={buttons.base}>
               <Text style={[buttons.text, buttons.textPrimary]}>
                 Follow us on Twitter
+              </Text>
+            </View>
+          </TouchableOpacity>
+          <TouchableOpacity
+            onPress={this.nextScreen}
+          >
+            <View style={[buttons.base, buttons.transparent]}>
+              <Text style={[buttons.text, buttons.textTransparent]}>
+                Send Another
               </Text>
             </View>
           </TouchableOpacity>
