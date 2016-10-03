@@ -61,18 +61,27 @@ export function submitSubmission() {
     dispatch(startSubmitSubmission());
 
     const { submission, user } = getState();
-    const data = submission;
-    data.user = user;
+    const data = {
+      submission,
+      user,
+    };
 
-    return fetch(`${HOST}/api/submissions`, {
+    if (!data.submission.imgUrl) {
+      delete data.submission.imgUrl;
+    }
+
+    const body = JSON.stringify(data);
+
+    const headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+    headers.append('Content-Length', body.length.toString());
+
+    return fetch(`${HOST}/api/submissions/guest`, {
       method: 'POST',
-      body: JSON.stringify(data),
+      headers,
+      body,
     })
-      .then(res => res.json())
-      .then(res => {
-        dispatch(receiveSubmitSubmission(res));
-        return res;
-      })
+      .then(() => dispatch(receiveSubmitSubmission()))
       .catch(err => {
         captureException(err);
         dispatch(addAlert({
