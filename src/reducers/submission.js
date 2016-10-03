@@ -2,6 +2,7 @@ import {
   SELECT_SUBMISSION_TYPE,
   SELECT_SUBMISSION_AGENCY,
   UPDATE_SUBMISSION_MESSAGE,
+  RECEIVE_SUBMIT_SUBMISSION,
   RESET_SUBMISSION,
 } from '../action-types';
 import { SUBMISSION_TYPES } from '../constants';
@@ -31,6 +32,7 @@ export default function submissionReducer(state = initialState, action) {
         message: action.payload.message,
       };
     case RESET_SUBMISSION:
+    case RECEIVE_SUBMIT_SUBMISSION:
       return initialState;
     default:
       return state;
