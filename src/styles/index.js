@@ -18,14 +18,14 @@ export const headings = StyleSheet.create({
 export const buttons = StyleSheet.create({
   base: {
     backgroundColor: $.WHITE,
-    padding: $.SM,
+    padding: $.SM + 2,
     borderRadius: $.BORDER_RADIUS,
   },
   transparent: {
     backgroundColor: null,
   },
   text: {
-    fontWeight: $.FONT_WEIGHT_REGULAR,
+    fontWeight: $.FONT_WEIGHT_MEDIUM,
     textAlign: 'center',
   },
   textPrimary: {
