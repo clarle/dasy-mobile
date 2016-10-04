@@ -81,7 +81,7 @@ export default class SendMessagePage extends Component {
     const telIsValid = !tel || validator.isLength(tel, { min: 10 });
     const messageIsValid = validator.isLength(message, { min: 1, max: 10000 });
 
-    if (nameIsValid && emailIsValid && telIsValid && messageIsValid) {
+    if (nameIsValid && emailIsValid && telIsValid && messageIsValid && !this.props.loading) {
       rightButton = {
         rightButton: {
           title: 'Send',
@@ -174,4 +174,5 @@ SendMessagePage.propTypes = {
   submission: PropTypes.shape({
     message: PropTypes.string,
   }),
+  loading: PropTypes.bool,
 };

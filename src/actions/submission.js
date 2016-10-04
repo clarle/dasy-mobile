@@ -8,6 +8,7 @@ import {
 } from '../action-types';
 import { HOST } from '../constants';
 import { addAlert } from './alerts';
+import { startLoading, endLoading } from './loading';
 import { captureException } from '../sentry';
 
 export function selectSubmissionType(type) {
@@ -58,6 +59,7 @@ export function resetSubmission() {
 
 export function submitSubmission() {
   return (dispatch, getState) => {
+    dispatch(startLoading());
     dispatch(startSubmitSubmission());
 
     const { submission, user } = getState();
@@ -81,7 +83,10 @@ export function submitSubmission() {
       headers,
       body,
     })
-      .then(() => dispatch(receiveSubmitSubmission()))
+      .then(() => {
+        dispatch(endLoading());
+        return dispatch(receiveSubmitSubmission());
+      })
       .catch(err => {
         captureException(err);
         dispatch(addAlert({

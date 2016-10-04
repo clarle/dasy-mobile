@@ -4,6 +4,7 @@ import submission from './submission';
 import agencies from './agencies';
 import user from './user';
 import alerts from './alerts';
+import loading from './loading';
 
 export default combineReducers({
   navigation,
@@ -11,4 +12,5 @@ export default combineReducers({
   agencies,
   user,
   alerts,
+  loading,
 });

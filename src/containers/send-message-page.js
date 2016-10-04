@@ -8,6 +8,7 @@ import { thankYou } from '../routes';
 const mapStateToProps = (state) => ({
   user: state.user,
   submission: state.submission,
+  loading: state.loading.loading,
 });
 
 const mapDispatchToProps = (dispatch) => ({

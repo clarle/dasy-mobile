@@ -22,3 +22,6 @@ export const RESET_USER = 'RESET_USER';
 export const ADD_ALERT = 'ADD_ALERT';
 export const DISMISS_ALERT = 'DISMISS_ALERT';
 export const DISMISS_ALL_ALERTS = 'DISMISS_ALL_ALERTS';
+
+export const START_LOADING = 'START_LOADING';
+export const END_LOADING = 'END_LOADING';
