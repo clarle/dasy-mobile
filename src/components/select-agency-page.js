@@ -52,7 +52,7 @@ export default class SelectAgencyPage extends Component {
     const query = {
       skip: this.props.agencies.length,
       limit: this.props.limit,
-      sort: 'type,name',
+      sort: '-type,name',
     };
 
     if (this.props.search) {
