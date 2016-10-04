@@ -14,7 +14,7 @@ export default class ThankYouPage extends Component {
   componentDidMount() {
     setTimeout(() => {
       this.nextScreen();
-    }, 6000);
+    }, 10000);
   }
 
   nextScreen() {
