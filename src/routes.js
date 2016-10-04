@@ -1,5 +1,4 @@
 // import App from './components/app';
-import HomePage from './containers/home-page';
 import SelectTypePage from './containers/select-type-page';
 import SelectAgencyPage from './containers/select-agency-page';
 import SendMessagePage from './containers/send-message-page';
@@ -10,11 +9,6 @@ export function Route(options) {
   this.component = options.component;
   this.title = options.title;
 }
-
-export const home = new Route({
-  key: 'home',
-  component: HomePage,
-});
 
 export const selectType = new Route({
   key: 'select-type',
