@@ -1,11 +1,11 @@
 import { connect } from 'react-redux';
 import { push } from '../actions/navigation';
-import { selectType } from '../routes';
+import { home } from '../routes';
 import ThankYouPage from '../components/thank-you-page';
 
 const mapDispatchToProps = (dispatch) => ({
   nextScreen: () => {
-    dispatch(push(selectType));
+    dispatch(push(home));
   },
 });
 

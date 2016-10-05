@@ -4,7 +4,7 @@ import {
   PREV_ROUTE,
   NEXT_ROUTE,
 } from '../action-types';
-import { selectType } from '../routes';
+import { home } from '../routes';
 
 function randomizeKey(route) {
   return {
@@ -16,7 +16,7 @@ function randomizeKey(route) {
 const initialState = {
   index: 0,
   routes: [
-    randomizeKey(selectType),
+    randomizeKey(home),
   ],
 };
 
