@@ -3,6 +3,7 @@ import { View, StatusBar } from 'react-native';
 import NavigationBar from 'react-native-navbar';
 import validator from 'validator';
 import InputField from './form/input-field';
+import ImageSelector from './image-selector';
 import * as $ from '../styles/variables';
 import navbar from '../styles/navbar';
 import { grid } from '../styles';
@@ -74,6 +75,7 @@ export default class SendMessagePage extends Component {
 
     const {
       message,
+      imgUrl,
     } = this.props.submission;
 
     const nameIsValid = validator.isLength(name, { min: 1 });
@@ -144,6 +146,13 @@ export default class SendMessagePage extends Component {
             returnKeyType="next"
             value={formatTel(tel)}
           />
+          <ImageSelector
+            value={imgUrl}
+            uploading={this.props.uploadingImg}
+            onError={this.props.onImageError}
+            onReset={this.props.onImageReset}
+            onSelect={this.props.onImageSelect}
+          />
           <InputField
             inputRef={c => { this.formFields.message = c; }}
             onChangeText={this.onChangeField('message')}
@@ -166,6 +175,9 @@ SendMessagePage.propTypes = {
   nextRoute: PropTypes.func.isRequired,
   onSubmit: PropTypes.func.isRequired,
   onChange: PropTypes.func.isRequired,
+  onImageError: PropTypes.func.isRequired,
+  onImageReset: PropTypes.func.isRequired,
+  onImageSelect: PropTypes.func.isRequired,
   user: PropTypes.shape({
     name: PropTypes.string,
     email: PropTypes.string,
@@ -173,6 +185,8 @@ SendMessagePage.propTypes = {
   }),
   submission: PropTypes.shape({
     message: PropTypes.string,
+    imgUrl: PropTypes.string,
   }),
   loading: PropTypes.bool,
+  uploadingImg: PropTypes.bool,
 };

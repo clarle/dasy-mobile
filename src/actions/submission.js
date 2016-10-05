@@ -2,13 +2,14 @@ import {
   SELECT_SUBMISSION_TYPE,
   SELECT_SUBMISSION_AGENCY,
   UPDATE_SUBMISSION_MESSAGE,
+  UPDATE_SUBMISSION_IMG_URL,
   START_SUBMIT_SUBMISSION,
   RECEIVE_SUBMIT_SUBMISSION,
   RESET_SUBMISSION,
 } from '../action-types';
 import { HOST } from '../constants';
 import { addAlert } from './alerts';
-import { startLoading, endLoading } from './loading';
+import { startLoading, endLoading, startUploadingImg, endUploadingImg } from './loading';
 import { captureException } from '../sentry';
 
 export function selectSubmissionType(type) {
@@ -38,6 +39,15 @@ export function updateSubmissionMessage(message) {
   };
 }
 
+export function updateSubmissionImgUrl(imgUrl) {
+  return {
+    type: UPDATE_SUBMISSION_IMG_URL,
+    payload: {
+      imgUrl,
+    },
+  };
+}
+
 /* export */function startSubmitSubmission() {
   return {
     type: START_SUBMIT_SUBMISSION,
@@ -54,6 +64,44 @@ export function updateSubmissionMessage(message) {
 export function resetSubmission() {
   return {
     type: RESET_SUBMISSION,
+  };
+}
+
+export function uploadSubmissionImg(img) {
+  return dispatch => {
+    dispatch(startLoading());
+    dispatch(startUploadingImg());
+
+    const headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+
+    const form = new FormData();
+    form.append('photos', {
+      uri: img.uri,
+      type: 'image/jpeg',
+      name: `${new Date().getTime()}.jpg`,
+    });
+
+    return fetch(`${HOST}/api/uploads`, {
+      method: 'POST',
+      headers,
+      body: form,
+    })
+      .then(res => res.json())
+      .then(res => {
+        dispatch(endLoading());
+        dispatch(endUploadingImg());
+        return dispatch(updateSubmissionImgUrl(res.imgUrl));
+      })
+      .catch(err => {
+        captureException(err);
+        dispatch(endLoading());
+        dispatch(endUploadingImg());
+        dispatch(addAlert({
+          message: err.message,
+          type: 'error',
+        }));
+      });
   };
 }
 

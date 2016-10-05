@@ -2,6 +2,7 @@ import {
   SELECT_SUBMISSION_TYPE,
   SELECT_SUBMISSION_AGENCY,
   UPDATE_SUBMISSION_MESSAGE,
+  UPDATE_SUBMISSION_IMG_URL,
   RECEIVE_SUBMIT_SUBMISSION,
   RESET_SUBMISSION,
 } from '../action-types';
@@ -30,6 +31,11 @@ export default function submissionReducer(state = initialState, action) {
       return {
         ...state,
         message: action.payload.message,
+      };
+    case UPDATE_SUBMISSION_IMG_URL:
+      return {
+        ...state,
+        imgUrl: action.payload.imgUrl,
       };
     case RESET_SUBMISSION:
     case RECEIVE_SUBMIT_SUBMISSION:

@@ -1,10 +1,13 @@
 import {
   START_LOADING,
   END_LOADING,
+  START_UPLOADING_IMG,
+  END_UPLOADING_IMG,
 } from '../action-types';
 
 const initialState = {
   loading: false,
+  uploadingImg: false,
 };
 
 export default function loadingReducer(state = initialState, action) {
@@ -18,6 +21,16 @@ export default function loadingReducer(state = initialState, action) {
       return {
         ...state,
         loading: false,
+      };
+    case START_UPLOADING_IMG:
+      return {
+        ...state,
+        uploadingImg: true,
+      };
+    case END_UPLOADING_IMG:
+      return {
+        ...state,
+        uploadingImg: false,
       };
     default:
       return state;
