@@ -1,9 +1,9 @@
 import React, { Component, PropTypes } from 'react';
-import { View, StatusBar, Text, TouchableOpacity } from 'react-native';
-import { handleUrl } from '../utils';
+import { Image, View, StatusBar, Text, TouchableOpacity } from 'react-native';
 import * as $ from '../styles/variables';
 import { buttons, welcome } from '../styles';
 import submission from '../styles/submission-type';
+import logo from '../assets/logo/logo-light-1.5x.png';
 
 export default class ThankYouPage extends Component {
   constructor(props) {
@@ -20,11 +20,11 @@ export default class ThankYouPage extends Component {
     return (
       <View style={welcome.container}>
         <StatusBar translucent barStyle="light-content" />
-        <Text style={welcome.title}>Dasy</Text>
+        <Image style={welcome.logo} source={logo} />
         <Text style={welcome.subtitle}>
           Perform a Civic Service.
         </Text>
-        <Text style={welcome.subtitle}>
+        <Text style={[welcome.subtitle, welcome.subtitle2]}>
           Message public agencies.
         </Text>
         <View style={submission.actions}>

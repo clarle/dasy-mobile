@@ -5,6 +5,7 @@ export default StyleSheet.create({
   container: {
     backgroundColor: $.BRAND_PRIMARY,
     flex: 1,
+    alignItems: 'center',
     paddingTop: 100,
   },
   title: {
@@ -21,5 +22,13 @@ export default StyleSheet.create({
     lineHeight: $.FONT_SIZE_H4 * $.LINE_HEIGHT_HEADINGS,
     marginTop: $.XS,
     textAlign: 'center',
+  },
+  subtitle2: {
+    fontSize: $.FONT_SIZE_H6,
+  },
+  logo: {
+    height: 60,
+    width: 201,
+    marginBottom: $.LG,
   },
 });

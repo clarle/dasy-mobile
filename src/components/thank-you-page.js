@@ -30,7 +30,7 @@ export default class ThankYouPage extends Component {
         <Text style={welcome.subtitle}>
           Thanks for your public service.
         </Text>
-        <Text style={welcome.subtitle}>
+        <Text style={[welcome.subtitle, welcome.subtitle2]}>
           Check for a confirmation email.
         </Text>
         <View style={submission.actions}>
