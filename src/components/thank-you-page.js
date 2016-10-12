@@ -12,12 +12,16 @@ export default class ThankYouPage extends Component {
   }
 
   componentDidMount() {
-    setTimeout(() => {
+    this.timer = setTimeout(() => {
       this.nextScreen();
     }, 10000);
   }
 
+
   nextScreen() {
+    if (this.timer) {
+      clearTimeout(this.timer);
+    }
     return this.props.nextScreen();
   }
 

@@ -9,7 +9,7 @@ import { home } from '../routes';
 function randomizeKey(route) {
   return {
     ...route,
-    key: route.key + new Date(),
+    key: route.key + new Date() + Math.floor(Math.random() * 1000000000),
   };
 }
 
