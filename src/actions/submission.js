@@ -120,6 +120,14 @@ export function submitSubmission() {
       delete data.submission.imgUrl;
     }
 
+    if (!data.user.id) {
+      delete data.user.id;
+    }
+
+    if (!data.user.tel) {
+      delete data.user.tel;
+    }
+
     const body = JSON.stringify(data);
 
     const headers = new Headers();
@@ -131,9 +139,23 @@ export function submitSubmission() {
       headers,
       body,
     })
-      .then(() => {
+      .then(res => {
         dispatch(endLoading());
-        return dispatch(receiveSubmitSubmission());
+        if (res.ok) {
+          return dispatch(receiveSubmitSubmission());
+        }
+        return res.json()
+          .then(response => {
+            let msg;
+
+            try {
+              msg = response.error.message;
+            } catch (e) {
+              msg = res.statusText || 'Unknown Error';
+            }
+
+            throw new Error(msg);
+          });
       })
       .catch(err => {
         captureException(err);
@@ -141,6 +163,7 @@ export function submitSubmission() {
           message: err.message,
           type: 'error',
         }));
+        throw err;
       });
   };
 }

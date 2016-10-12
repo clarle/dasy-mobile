@@ -39,9 +39,13 @@ export default class SendMessagePage extends Component {
   }
 
   onSubmit() {
-    this.props.onSubmit().then(() => {
-      this.props.nextRoute();
-    });
+    this.props.onSubmit()
+      .then(() => {
+        this.props.nextRoute();
+      })
+      .catch(err => {
+        console.info('Possible form validation error.', err);
+      });
   }
 
   onBlurName() {
@@ -144,7 +148,7 @@ export default class SendMessagePage extends Component {
             placeholder="optional"
             keyboardType="phone-pad"
             returnKeyType="next"
-            value={formatTel(tel)}
+            value={tel && formatTel(tel)}
           />
           <ImageSelector
             value={imgUrl}
