@@ -28,8 +28,10 @@ export const SUBMISSION_TYPES = map(SUBMISSION_TYPES_MAP, (value, key) => (assig
   { key }
 )));
 
+export const PRODUCTION_HOST = 'https://www.dasy.io';
+
 export const HOST = env.HOST || (process.env.NODE_ENV === 'production'
-                                  ? 'https://dasy-labs.herokuapp.com'
+                                  ? PRODUCTION_HOST
                                   : 'http://localhost:3000');
 
 export const MIXPANEL_ID = env.MIXPANEL_ID;

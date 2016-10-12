@@ -1,12 +1,28 @@
 import React, { PropTypes } from 'react';
-import { StyleSheet, View } from 'react-native';
+import { StyleSheet, View, Text } from 'react-native';
 import Alert from './alert';
+import * as $ from '../styles/variables';
 import alerts from '../styles/alerts';
+import { HOST, PRODUCTION_HOST } from '../constants';
 
 const styles = StyleSheet.create({
   fullscreen: {
     flex: 1,
     flexDirection: 'column',
+  },
+  testNotice: {
+    backgroundColor: $.BRAND_WARNING,
+    padding: $.XS,
+    position: 'absolute',
+    right: 0,
+    bottom: 0,
+    left: 0,
+    zIndex: 800,
+  },
+  testNoticeText: {
+    color: $.WHITE,
+    fontSize: 12,
+    textAlign: 'center',
   },
 });
 
@@ -17,6 +33,16 @@ function bindDismissAlert(dismiss, alert) {
 }
 
 export default function App(props) {
+  let testNotice = null;
+
+  if (HOST !== PRODUCTION_HOST) {
+    testNotice = (
+      <View style={styles.testNotice}>
+        <Text style={styles.testNoticeText}>HOST: {HOST}</Text>
+      </View>
+    );
+  }
+
   return (
     <View style={[styles.fullscreen, styles.status]}>
       <View style={alerts.container}>
@@ -28,6 +54,7 @@ export default function App(props) {
           />
         ))}
       </View>
+      {testNotice}
       {props.children}
     </View>
   );
