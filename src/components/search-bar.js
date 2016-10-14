@@ -7,6 +7,7 @@ export default function SearchBar(props) {
     <View style={searchBar.base}>
       <TextInput
         {...props}
+        underlineColorAndroid="transparent"
         style={searchBar.input}
         placeholder="Search"
         value={props.value}

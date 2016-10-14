@@ -52,6 +52,7 @@ export default function InputField(props) {
       <View style={groupContainerStyles}>
         {labelText}
         <TextInput
+          underlineColorAndroid="transparent"
           {...inputProps}
           style={inputStyles}
         />
