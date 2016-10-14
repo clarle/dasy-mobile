@@ -15,35 +15,13 @@ export const headings = StyleSheet.create({
   h6: { fontSize: $.FONT_SIZE_H6 },
 });
 
-export const buttons = StyleSheet.create({
-  base: {
-    backgroundColor: $.WHITE,
-    padding: $.SM + 2,
-    borderRadius: $.BORDER_RADIUS,
-  },
-  transparent: {
-    backgroundColor: null,
-  },
-  text: {
-    fontWeight: $.FONT_WEIGHT_MEDIUM,
-    textAlign: 'center',
-  },
-  textPrimary: {
-    color: $.BRAND_PRIMARY,
-  },
-  textTransparent: {
-    color: $.WHITE,
+export const fullscreen = StyleSheet.create({
+  fullscreen: {
+    flex: 1,
+    flexDirection: 'column',
   },
 });
 
-export const grid = StyleSheet.create({
-  container: {
-    position: 'absolute',
-    top: 0,
-    right: 0,
-    bottom: 0,
-    left: 0,
-  },
-});
-
+exports.buttons = require('./buttons').default;
+exports.grid = require('./grid').default;
 exports.welcome = require('./welcome').default;

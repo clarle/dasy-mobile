@@ -9,7 +9,6 @@ const {
   CardStack: NavigationCardStack,
 } = NavigationExperimental;
 
-
 export default class NavigationRoot extends Component {
   constructor(props) {
     super(props);

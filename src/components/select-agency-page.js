@@ -2,7 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import {
   ListView,
   View,
-  StatusBar,
+  Platform,
   Text,
 } from 'react-native';
 import NavigationBar from 'react-native-navbar';
@@ -94,7 +94,7 @@ export default class SelectAgencyPage extends Component {
 
     ds = ds.cloneWithRowsAndSections(groupedAgencies, Object.keys(groupedAgencies));
 
-    if (this.props.loading && this.props.agencies.length === 0) {
+    if (this.props.loading && this.props.agencies.length === 0 && Platform.OS === 'ios') { // TODO: fix android bug
       loadingIndicator = <LoadingIndicator />;
     }
 
@@ -118,10 +118,10 @@ export default class SelectAgencyPage extends Component {
 
     return (
       <View style={grid.container}>
-        <StatusBar translucent barStyle="light-content" />
         <NavigationBar
           style={navbar.base}
           statusBar={{
+            barStyle: 'light-content',
             tintColor: $.BRAND_PRIMARY,
           }}
           title={{

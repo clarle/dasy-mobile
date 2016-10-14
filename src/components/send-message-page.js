@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react';
-import { View, StatusBar } from 'react-native';
+import { View } from 'react-native';
 import NavigationBar from 'react-native-navbar';
 import validator from 'validator';
 import InputField from './form/input-field';
@@ -99,10 +99,10 @@ export default class SendMessagePage extends Component {
 
     return (
       <View style={grid.container}>
-        <StatusBar translucent barStyle="light-content" />
         <NavigationBar
           style={navbar.base}
           statusBar={{
+            barStyle: 'light-content',
             tintColor: $.BRAND_PRIMARY,
           }}
           title={{
@@ -164,7 +164,7 @@ export default class SendMessagePage extends Component {
             placeholder="Message"
             multiline
             style={{ flex: 1, paddingTop: $.XS }}
-            groupStyle={{ flex: 1 }}
+            groupStyle={{ flex: 1, alignItems: 'flex-start' }}
             inputStyle={{ flex: 1, height: null }}
             value={message}
           />

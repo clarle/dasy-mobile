@@ -22,7 +22,7 @@ export default StyleSheet.create({
     color: $.TEXT_COLOR,
     fontSize: $.FONT_SIZE_H5,
     fontWeight: $.FONT_WEIGHT_LIGHT,
-    lineHeight: $.FONT_SIZE_H5 * $.LINE_HEIGHT,
+    lineHeight: Math.floor($.FONT_SIZE_H5 * $.LINE_HEIGHT),
     textAlign: 'center',
   },
   actions: {
