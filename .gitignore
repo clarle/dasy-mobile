@@ -43,4 +43,5 @@ android/keystores/debug.keystore
 # OTHER
 Pods/
 .env
+.env.*
 *.keystore
