@@ -1,10 +1,32 @@
 {
   "name": "dasy",
+  "license": "AGPL-3.0",
   "version": "1.2.0",
+  "description": "Message a public agency with a discussion starter like positive, idea, or question feedback.",
+  "keywords": [
+    "community"
+  ],
   "private": true,
   "scripts": {
     "start": "node node_modules/react-native/local-cli/cli.js start"
   },
+  "engines": {
+    "node": ">= 6"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/dasylabs/dasy-mobile.git"
+  },
+  "contributors": [
+    {
+      "name": "Marius Craciunoiu",
+      "email": "npm@m23.io",
+      "url": "https://www.uplift.agency"
+    }
+  ],
+  "homepage": "https://www.dasy.io",
+  "bugs": "https://github.com/dasylabs/dasy-mobile/issues",
+
   "dependencies": {
     "babel-plugin-transform-inline-environment-variables": "6.8.0",
     "lodash": "4.16.4",
