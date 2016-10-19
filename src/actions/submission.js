@@ -73,7 +73,7 @@ export function uploadSubmissionImg(img) {
     dispatch(startUploadingImg());
 
     const headers = new Headers();
-    headers.append('Content-Type', 'application/json');
+    headers.append('Content-Type', 'multipart/form-data');
 
     const form = new FormData();
     form.append('photos', {
