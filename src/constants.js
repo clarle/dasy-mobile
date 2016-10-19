@@ -30,9 +30,7 @@ export const SUBMISSION_TYPES = map(SUBMISSION_TYPES_MAP, (value, key) => (assig
 
 export const PRODUCTION_HOST = 'https://www.dasy.io';
 
-export const HOST = env.HOST || (process.env.NODE_ENV === 'production'
-                                  ? PRODUCTION_HOST
-                                  : 'http://localhost:3000');
+export const HOST = env.HOST || 'http://localhost:3000';
 
 export const MIXPANEL_ID = env.MIXPANEL_ID;
 export const SENTRY_DSN_PUBLIC = env.SENTRY_DSN_PUBLIC;
